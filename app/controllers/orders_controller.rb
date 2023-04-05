@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  before_action :return_top, only: [:index]
   before_action :item_prams, only: [:index, :create]
+  before_action :return_top, only: [:index]
+  before_action :order_present?, only: [:index]
 
   def index
     @order_address = OrderAddress.new
@@ -41,5 +42,11 @@ class OrdersController < ApplicationController
 
   def item_prams
     @item = Item.find(params[:item_id])
+  end
+
+  def order_present? 
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 end
