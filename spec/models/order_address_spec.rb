@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    @item = FactoryBot.create(:item)
-    @order = FactoryBot.create(:order, user_id: @item.user.id, item_id: @item.id)
-    @order_address = FactoryBot.build(:order_address, user_id: @item.user.id, item_id: @item.id)
+    @user_id = FactoryBot.create(:user)
+    @item_id = FactoryBot.create(:item)
+    @order_address = FactoryBot.build(:order_address, user_id: @user_id, item_id: @item_id)
     sleep 0.1
   end
 
