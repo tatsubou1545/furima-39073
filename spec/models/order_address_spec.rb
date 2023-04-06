@@ -32,17 +32,17 @@ RSpec.describe OrderAddress, type: :model do
       it 'post_codeが半角でハイフンを含まない場合は保存できないこと' do
         @order_address.post_code = '1234567'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Post code is invalid")
+        expect(@order_address.errors.full_messages).to include('Post code is invalid')
       end
       it 'post_codeが全角でハイフンを含まない場合は保存できないこと' do
         @order_address.post_code = '１２３４５６７'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Post code is invalid")
+        expect(@order_address.errors.full_messages).to include('Post code is invalid')
       end
       it 'post_codeが全角でハイフンを含む場合は保存できないこと' do
         @order_address.post_code = '１２３－４５６７'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Post code is invalid")
+        expect(@order_address.errors.full_messages).to include('Post code is invalid')
       end
       it 'shipping_area_idが空だと保存できないこと' do
         @order_address.shipping_area_id = ''
@@ -67,27 +67,27 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberが全角数字だと保存できないこと' do
         @order_address.phone_number = '０９０１２３４５６７８'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが半角でハイフンを含む場合は保存できないこと' do
         @order_address.phone_number = '090-1234-5678'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが全角でハイフンを含む場合は保存できないこと' do
         @order_address.phone_number = '０９０-１２３４-５６７８'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが9桁以下の場合は保存できないこと' do
         @order_address.phone_number = '012345678'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが12桁以上の場合は保存できないこと' do
         @order_address.phone_number = '090123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@order_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'user_idが紐づいていないと保存できないこと' do
         @order_address.user_id = ''

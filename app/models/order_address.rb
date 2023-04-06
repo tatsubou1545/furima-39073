@@ -4,10 +4,10 @@ class OrderAddress
 
   with_options presence: true do
     validates :token
-    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
+    validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :municipalities
     validates :address
-    validates :phone_number, format: {with: /\A[0-9]{10,11}\z/}
+    validates :phone_number, format: { with: /\A[0-9]{10,11}\z/ }
     validates :user_id
     validates :item_id
   end
@@ -15,6 +15,7 @@ class OrderAddress
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
-    Address.create(post_code: post_code, shipping_area_id: shipping_area_id, municipalities: municipalities, address: address, building_name: building_name, phone_number: phone_number, order_id: order.id)
+    Address.create(post_code: post_code, shipping_area_id: shipping_area_id, municipalities: municipalities, address: address,
+                   building_name: building_name, phone_number: phone_number, order_id: order.id)
   end
 end
