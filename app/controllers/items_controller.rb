@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :set_params, only: [:show, :edit, :update, :destroy]
   before_action :compare_id, only: [:edit, :destroy]
+  before_action :order_present?, only: [:edit]
 
   def index
     @items = Item.order('created_at DESC').includes(:user)
@@ -52,6 +53,12 @@ class ItemsController < ApplicationController
   def compare_id
     if current_user.id != @item.user_id
       redirect_to root_path 
+    end
+  end
+
+  def order_present? 
+    if @item.order.present?
+      redirect_to root_path
     end
   end
 end
